@@ -1,19 +1,13 @@
-import {Firestore} from '@google-cloud/firestore';
-import DocumentReference = FirebaseFirestore.DocumentReference;
-import DocumentSnapshot = FirebaseFirestore.DocumentSnapshot;
+import {DocumentReference, DocumentSnapshot, Firestore} from '@google-cloud/firestore';
 
 export interface IDocumentKey {
     collection: string;
     token: string;
 }
 
+let internalClient: Firestore;
+
 export class FirestoreClient {
-
-    private internalClient: Firestore;
-
-    constructor(internalClient: Firestore) {
-        this.internalClient = internalClient;
-    }
 
     public async create(key: IDocumentKey, data: {}) {
         await this.getDocument(key).set(data);
@@ -30,12 +24,12 @@ export class FirestoreClient {
     }
 
     private getDocument(key: IDocumentKey): DocumentReference {
-        return this.internalClient.doc(key.collection + '/' + key.token);
+        return internalClient.doc(key.collection + '/' + key.token);
     }
 }
 
 export default (): FirestoreClient => {
-    return new FirestoreClient(
-        new Firestore()
-    );
+    internalClient = new Firestore();
+
+    return new FirestoreClient();
 };
