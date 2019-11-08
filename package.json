@@ -1,13 +1,13 @@
 {
-  "name": "ts-gcp-firestore",
+  "name": "@dhryn-public/ts-gcp-firestore",
   "version": "1.0.0",
-  "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "lint": "tslint -c tslint.json -p tsconfig.json --fix",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepublishOnly": "npm run lint && tsc"
+    "prepublishOnly": "npm run lint && tsc",
+    "publish": "npm publish --access public"
   },
   "author": "dhryn-public",
   "license": "ISC",
@@ -16,11 +16,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:dhryn-public/ts-gcp-firestore.git"
+    "url": "git+ssh://git@github.com/dhryn-public/ts-gcp-firestore.git"
   },
   "devDependencies": {
     "@types/node": "^12.12.6",
     "tslint": "^5.20.1",
     "typescript": "^3.7.2"
-  }
+  },
+  "files": [
+    "dist/**/*"
+  ],
+  "bugs": {
+    "url": "https://github.com/dhryn-public/ts-gcp-firestore/issues"
+  },
+  "homepage": "https://github.com/dhryn-public/ts-gcp-firestore#readme",
+  "description": ""
 }
